@@ -1,1 +1,2 @@
-worker: python driver_service/main.py  
+web: python taxi_pipeline/api_service/main.py
+
