@@ -8,7 +8,12 @@ API_URL = "https://my-taxi-pipeline-bd9f765ed57d.herokuapp.com/rides"
 
 def get_rides():
     response = requests.get(API_URL)
-    return response.json()
+    if response.status_code != 200:
+        raise Exception(f"API returned status code {response.status_code}: {response.text}")
+    try:
+        return response.json()
+    except Exception as e:
+        raise Exception(f"Failed to parse JSON: {response.text}") from e
 
 def update_driver_stats(rides):
     conn = sqlite3.connect(DB_PATH)
