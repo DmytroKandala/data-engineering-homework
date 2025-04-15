@@ -4,7 +4,7 @@ import os
 import time
 
 DB_PATH = "/app/taxi.db"
-API_URL = "http://api_service:5000/rides"
+API_URL = "https://my-taxi-pipeline-bd9f765ed57d.herokuapp.com/rides"
 
 def get_rides():
     response = requests.get(API_URL)
