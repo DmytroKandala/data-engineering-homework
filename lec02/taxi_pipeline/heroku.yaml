@@ -1,0 +1,7 @@
+build:
+  docker:
+    web: ./driver_service/Dockerfile
+run:
+  web: python main.py
+
+
