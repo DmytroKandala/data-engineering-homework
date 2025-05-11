@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# System
+.DS_Store
+Thumbs.db
+
+# Environments
+.env
+venv/
+.env.*
+
+# Heroku local DB
+*.sqlite3
+*.db
+
+# Other
+*.log
