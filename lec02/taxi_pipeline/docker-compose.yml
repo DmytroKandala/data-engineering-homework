@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  api_service:
+    build: ./api_service
+    ports:
+      - "5000:5000"
+
+  driver_service:
+    build: ./driver_service
+    depends_on:
+      - api_service
+    volumes:
+      - ./driver_service:/app
