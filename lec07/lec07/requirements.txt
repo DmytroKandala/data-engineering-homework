@@ -1,0 +1,5 @@
+apache-airflow==2.6.0
+scikit-learn
+pandas
+dbt-core==1.5.2
+dbt-postgres==1.5.2
