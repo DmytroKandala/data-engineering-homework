@@ -2,15 +2,17 @@
 
 SPARK_WORKLOAD=$1
 
-echo "=== Entrypoint script started ==="
 echo "SPARK_WORKLOAD: $SPARK_WORKLOAD"
 
-if [ "$SPARK_WORKLOAD" == "master" ]; then
-  start-master.sh -p 7077 &
-  echo "=== Starting Jupyter Lab ==="
-  jupyter lab --ip=0.0.0.0 --port=8889 --allow-root --NotebookApp.token='' --notebook-dir=/opt/workspace
-elif [[ $SPARK_WORKLOAD =~ "worker" ]]; then
+if [ "$SPARK_WORKLOAD" == "master" ];
+then
+  start-master.sh -p 7077
+elif [[ $SPARK_WORKLOAD =~ "worker" ]];
+# if $SPARK_WORKLOAD contains substring "worker". try 
+# try "worker-1", "worker-2" etc.
+then
   start-worker.sh spark://spark-master:7077
-elif [ "$SPARK_WORKLOAD" == "history" ]; then
+elif [ "$SPARK_WORKLOAD" == "history" ]
+then
   start-history-server.sh
 fi
