@@ -23,9 +23,10 @@ services:
       - '8080:8080' # Spark master Web UI
       - '7077:7077' # For spark-node-to-spark-node queries
       - '4040:4040' # Spark worker data
-      - "8889:8889" # JupyterLab
+      - '8889:8889' # JupyterLab
     networks:
       - spark
+
   spark-history-server:
     container_name: spark-history
     image: spark-image
@@ -60,6 +61,21 @@ services:
     networks:
       - spark
 
+  spark-worker-2:
+    container_name: spark-worker-2
+    image: spark-image
+    entrypoint: ['/opt/spark/entrypoint.sh', 'worker']
+    depends_on:
+      - spark-master
+    env_file:
+      - ./spark-base/.env.spark
+    volumes:
+      - shared-workspace:/opt/workspace
+      - ./scripts:/opt/spark/scripts
+      - ./data:/opt/workspace/data
+      - ./spark-logs:/opt/spark/spark-events
+    networks:
+      - spark
 
 networks:
   spark:
